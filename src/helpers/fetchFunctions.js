@@ -8,4 +8,4 @@ export const fetchProductsList = async (QUERY) => {
   const data = await resultado.json();
   return data.results;
 };
-console.log(fetchProductsList('computador'));
+//console.log(fetchProductsList('computador'));
