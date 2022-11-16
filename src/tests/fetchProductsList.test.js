@@ -14,7 +14,7 @@ describe('Teste a função fetchProductsList', () => {
   });
 
   it('fetch é chamado com o endpoint correto ao executar fetchProductsList', async () => {
-    const endpoint = 'https:api.mercadolibre.com/sites/MLB/search?q=computador';
+    const endpoint = 'https://api.mercadolibre.com/sites/MLB/search?q=computador';
     await fetchProductsList('computador');
     expect(fetch).toHaveBeenCalledWith(endpoint);
   });
