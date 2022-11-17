@@ -125,15 +125,3 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
 
   return section;
 };
-
-/* function loading() {
-  const container = document.getElementById('list');
-  const element = document.createElement('li');
-  element.innerText = 'carregando...';
-  element.className = 'loading';
-  container.appendChild(element);
-}
-
-if (document.getElementById('list'.length === 0)){
-  loading();
-}; */
