@@ -13,20 +13,30 @@ function loading() {
   container.appendChild(element);
 }
 
+function error() {
+  const container = document.querySelector('.products');
+  const element = document.createElement('p');
+  element.innerText = 'Algum erro ocorreu, recarregue a página e tente novamente';
+  element.className = 'error';
+  container.appendChild(element);
+}
+
 function removeLoading() {
   const remove = document.querySelector('.loading');
   remove.remove();
 }
 
-const productList = async () => {
-  loading();
-  const goods = await fetchProductsList('computador');
-  console.log(goods);
-  const merchandise = document.querySelector('.products');
-  goods.forEach((article) => {
-    const thing = createProductElement(article);
-    merchandise.appendChild(thing);
-  });
-  removeLoading();
-};
-productList();
+try {
+  const productList = async () => {
+    loading();
+    const goods = await fetchProductsList('computador');
+    console.log(goods);
+    const merchandise = document.querySelector('.products');
+    goods.forEach((article) => {
+      const thing = createProductElement(article);
+      merchandise.appendChild(thing);
+    });
+    removeLoading();
+  };
+  productList();
+} catch { error(); }

@@ -6,6 +6,7 @@ export const getAddress = () => {
 
 export const searchCep = () => {
   const ad = getAddress();
+  console.log(ad);
   const campo = document.querySelector('.cart__address');
-  campo.innerHTML = `${ad.address} - ${ad.distrct} - ${ad.city} - ${ad.state}`;
+  campo.innerHTML = `${address} - ${distrct} - ${city} - ${state}`;
 };
