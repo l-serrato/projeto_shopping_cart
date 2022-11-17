@@ -4,9 +4,22 @@ export const getAddress = () => {
   return Promise.any(promises).then((endereco) => endereco.json()).then((zip) => zip);
 };
 
-export const searchCep = () => {
-  const ad = getAddress();
-  console.log(ad);
+export const searchCep = async () => {
   const campo = document.querySelector('.cart__address');
-  campo.innerHTML = `${address} - ${distrct} - ${city} - ${state}`;
+  try {
+    const ad = await getAddress();
+    const er1 = 400;
+    const er2 = 404;
+    if (ad.status === er1 || ad.status === er2) {
+      campo.innerHTML = 'CEP não encontrado';
+    } else {
+      const cdp1 = ad.address;
+      const cdp2 = ad.neighborhood;
+      const codp3 = ad.street;
+      const codp4 = ad.district;
+      campo.innerHTML = `${cdp1 || codp3} - ${codp4 || cdp2} - ${ad.city} - ${ad.state}`;
+    }
+  } catch (error) {
+    campo.innerHTML = 'CEP não encontrado';
+  }
 };

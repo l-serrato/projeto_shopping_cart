@@ -19,6 +19,7 @@ function error() {
   element.innerText = 'Algum erro ocorreu, recarregue a página e tente novamente';
   element.className = 'error';
   container.appendChild(element);
+  console.log('deu ruim');
 }
 
 function removeLoading() {
@@ -26,8 +27,8 @@ function removeLoading() {
   remove.remove();
 }
 
-try {
-  const productList = async () => {
+const productList = async () => {
+  try {
     loading();
     const goods = await fetchProductsList('computador');
     console.log(goods);
@@ -37,6 +38,6 @@ try {
       merchandise.appendChild(thing);
     });
     removeLoading();
-  };
-  productList();
-} catch { error(); }
+  } catch { error(); }
+};
+productList();
