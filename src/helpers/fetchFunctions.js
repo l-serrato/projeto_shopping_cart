@@ -14,7 +14,7 @@ export const fetchProductsList = async (QUERY) => {
   const merchandise = document.getElementById('list');
   goods.forEach((article) => {
     const item = document.createElement('li');
-    item.innerHTML = article;
+    item.innerHTML = `Descrição:${article.title} - Preço:${article.price}`;
     merchandise.appendChild(item);
   });
 };
