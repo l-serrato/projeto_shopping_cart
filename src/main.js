@@ -13,6 +13,11 @@ function loading() {
   container.appendChild(element);
 }
 
+function removeLoading() {
+  const remove = document.querySelector('.loading');
+  remove.remove();
+}
+
 const productList = async () => {
   loading();
   const goods = await fetchProductsList('computador');
@@ -22,11 +27,6 @@ const productList = async () => {
     const thing = createProductElement(article);
     merchandise.appendChild(thing);
   });
+  removeLoading();
 };
 productList();
-
-function removeLoading() {
-  const remove = document.querySelector('.loading');
-  remove.remove();
-}
-removeLoading();

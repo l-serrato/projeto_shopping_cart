@@ -5,7 +5,7 @@ export const getAddress = () => {
 };
 
 export const searchCep = () => {
-  getAddress();
-  // const campo = document.getElementsByClassName('cart__address');
-// campo.innerHTML = `${endereco}`
+  const ad = getAddress();
+  const campo = document.querySelector('.cart__address');
+  campo.innerHTML = `${ad.address} - ${ad.distrct} - ${ad.city} - ${ad.state}`;
 };
