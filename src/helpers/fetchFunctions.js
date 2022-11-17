@@ -9,6 +9,12 @@ export const fetchProductsList = async (QUERY) => {
   if (!QUERY) throw new Error('Termo de busca não informado');
   const resultado = await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${QUERY}`);
   const data = await resultado.json();
-  return data.results;
+  const goods = Object.values(data.results);
+  console.log(goods);
+  const merchandise = document.getElementById('list');
+  goods.forEach((article) => {
+    const item = document.createElement('li');
+    item.innerHTML = article;
+    merchandise.appendChild(item);
+  });
 };
-// console.log(fetchProductsList('computador'));
