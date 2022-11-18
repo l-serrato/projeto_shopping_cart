@@ -1,7 +1,8 @@
 import { searchCep } from './helpers/cepFunctions';
 import './style.css';
-import { fetchProductsList } from './helpers/fetchFunctions';
-import { createProductElement } from './helpers/shopFunctions';
+import { fetchProductsList, fetchProduct } from './helpers/fetchFunctions';
+import { createProductElement, createCartProductElement } from './helpers/shopFunctions';
+import { saveCartID } from './helpers/cartFunctions';
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 
@@ -27,12 +28,12 @@ function removeLoading() {
   remove.remove();
 }
 
+const merchandise = document.querySelector('.products');
 const productList = async () => {
   try {
     loading();
     const goods = await fetchProductsList('computador');
-    console.log(goods);
-    const merchandise = document.querySelector('.products');
+    // console.log(goods);
     goods.forEach((article) => {
       const thing = createProductElement(article);
       merchandise.appendChild(thing);
@@ -41,3 +42,18 @@ const productList = async () => {
   } catch { error(); }
 };
 productList();
+
+merchandise.addEventListener('click', async (event) => {
+  const shopCart = document.querySelector('.cart__products');
+  const capturaId = event.target.parentNode.firstChild.innerText;
+  saveCartID(capturaId);
+  const result = await fetchProduct(capturaId);
+  shopCart.appendChild(createCartProductElement(result));
+});
+
+window.onload = async () => {
+  getSavedCartIDs().map(async (elemento) => {
+    const merch = await fetchProduct(elemento);
+    Promise.all(containerProdutos.appendChild(createCartProductElement(merch)));
+  });
+};
