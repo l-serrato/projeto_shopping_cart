@@ -51,6 +51,14 @@ merchandise.addEventListener('click', async (event) => {
   shopCart.appendChild(createCartProductElement(result));
 });
 
+const subtotal = async () => {
+  const prix = document.querySelector('.product__price__value');
+  let soma = 0;
+  soma = prix.forEach((ammount) => ammount.reduce((acc, curr) => acc + curr));
+  console.log(soma);
+};
+subtotal();
+
 window.onload = async () => {
   getSavedCartIDs().map(async (elemento) => {
     const merch = await fetchProduct(elemento);
